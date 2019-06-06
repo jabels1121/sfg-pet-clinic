@@ -1,6 +1,13 @@
 package com.jaybe.sfgpetclinic.model;
 
-public class PetType {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class PetType extends BaseEntity{
 
     private String name;
 
