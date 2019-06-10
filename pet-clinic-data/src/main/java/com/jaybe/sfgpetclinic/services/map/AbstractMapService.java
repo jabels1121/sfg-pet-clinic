@@ -1,13 +1,13 @@
 package com.jaybe.sfgpetclinic.services.map;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 public abstract class AbstractMapService<T, ID> {
 
-    private Map<ID, T> map = new HashMap<>();
+    private Map<ID, T> map = new ConcurrentHashMap<>();
 
     protected Set<T> findAll(){
         return new HashSet<>(map.values());
