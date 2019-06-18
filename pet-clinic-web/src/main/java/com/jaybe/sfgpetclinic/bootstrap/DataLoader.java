@@ -7,11 +7,9 @@ import com.jaybe.sfgpetclinic.model.Vet;
 import com.jaybe.sfgpetclinic.services.OwnerService;
 import com.jaybe.sfgpetclinic.services.PetService;
 import com.jaybe.sfgpetclinic.services.VetService;
-import com.jaybe.sfgpetclinic.services.map.OwnerServiceMap;
-import com.jaybe.sfgpetclinic.services.map.PetServiceMap;
-import com.jaybe.sfgpetclinic.services.map.VetServiceMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -29,12 +27,12 @@ public class DataLoader implements CommandLineRunner {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass().getName());
 
-    public DataLoader() {
-        ownerService = new OwnerServiceMap();
-        petService = new PetServiceMap();
-        vetService = new VetServiceMap();
+    @Autowired
+    public DataLoader(OwnerService ownerService, PetService petService, VetService vetService) {
+        this.ownerService = ownerService;
+        this.petService = petService;
+        this.vetService = vetService;
     }
-
 
     private long getId() {
         return this.id.incrementAndGet();
@@ -111,8 +109,11 @@ public class DataLoader implements CommandLineRunner {
         logger.info("Check loaded data");
         logger.info("========================");
 
-        ownerService.findAll().forEach(System.out::println);
-        vetService.findAll().forEach(System.out::println);
-        petService.findAll().forEach(System.out::println);
+        ownerService.findAll().forEach(e -> logger.info(e.toString()));
+        vetService.findAll().forEach(e -> logger.info(e.toString()));
+        petService.findAll().forEach(e -> logger.info(e.toString()));
+
+        Owner byLastName = ownerService.findByLastName(owner1.getLastName());
+        logger.info("Found owner 1 - " + byLastName);
     }
 }

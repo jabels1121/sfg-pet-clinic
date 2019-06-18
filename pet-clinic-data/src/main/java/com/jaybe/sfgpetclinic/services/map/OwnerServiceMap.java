@@ -2,10 +2,12 @@ package com.jaybe.sfgpetclinic.services.map;
 
 import com.jaybe.sfgpetclinic.model.Owner;
 import com.jaybe.sfgpetclinic.services.OwnerService;
+import org.springframework.stereotype.Service;
 
 import java.util.Objects;
 import java.util.Set;
 
+@Service
 public class OwnerServiceMap extends AbstractMapService<Owner, Long>
         implements OwnerService {
 
