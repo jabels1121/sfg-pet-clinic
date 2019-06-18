@@ -7,7 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public abstract class AbstractMapService<T, ID> {
 
-    private Map<ID, T> map = new ConcurrentHashMap<>();
+    protected Map<ID, T> map = new ConcurrentHashMap<>();
 
     protected Set<T> findAll(){
         return new HashSet<>(map.values());
