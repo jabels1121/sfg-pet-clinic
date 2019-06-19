@@ -34,56 +34,43 @@ public class DataLoader implements CommandLineRunner {
         this.vetService = vetService;
     }
 
-    private long getId() {
-        return this.id.incrementAndGet();
-    }
-
     @Override
     public void run(String... args) throws Exception {
         Owner owner1 = new Owner();
-        owner1.setId(getId());
         owner1.setFirstName("John");
         owner1.setLastName("Week");
 
         Owner owner2 = new Owner();
-        owner2.setId(getId());
         owner2.setFirstName("Maria");
         owner2.setLastName("Bronson");
 
         Owner owner3 = new Owner();
-        owner3.setId(getId());
         owner3.setFirstName("William");
         owner3.setLastName("Wilson");
 
         Vet vet1 = new Vet();
-        vet1.setId(getId());
         vet1.setFirstName("Daria");
         vet1.setLastName("Mushkevich");
 
         Vet vet2 = new Vet();
-        vet2.setId(getId());
         vet2.setFirstName("Andrey");
         vet2.setLastName("Kolomoisky");
 
         Vet vet3 = new Vet();
-        vet3.setId(getId());
         vet3.setFirstName("Oleg");
         vet3.setLastName("Gnatuk");
 
         Pet pet1 = new Pet();
-        pet1.setId(getId());
         pet1.setPetType(new PetType("cat"));
         pet1.setOwner(owner1);
         pet1.setBirthDate(LocalDate.of(2005, 1, 12));
 
         Pet pet2 = new Pet();
-        pet2.setId(getId());
         pet2.setPetType(new PetType("dog"));
         pet2.setOwner(owner2);
         pet2.setBirthDate(LocalDate.of(2014, 6, 27));
 
         Pet pet3 = new Pet();
-        pet3.setId(getId());
         pet3.setPetType(new PetType("parrot"));
         pet3.setOwner(owner3);
         pet3.setBirthDate(LocalDate.of(2011, 3, 2));
