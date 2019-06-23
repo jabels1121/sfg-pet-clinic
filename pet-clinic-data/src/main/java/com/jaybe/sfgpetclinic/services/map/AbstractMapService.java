@@ -20,7 +20,7 @@ public abstract class AbstractMapService<T extends BaseEntity, ID extends Long> 
         return map.get(id);
     }
 
-    protected T save(T object) {
+    protected T save(T object) throws RuntimeException {
         if (object != null) {
             if (object.getId() == null) {
                 object.setId(getNextId());

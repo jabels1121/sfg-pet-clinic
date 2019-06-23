@@ -20,7 +20,7 @@ public class PetServiceMap extends AbstractMapService<Pet, Long> implements PetS
     }
 
     @Override
-    public Pet save(Pet object) {
+    public Pet save(Pet object) throws RuntimeException {
         return super.save(object);
     }
 

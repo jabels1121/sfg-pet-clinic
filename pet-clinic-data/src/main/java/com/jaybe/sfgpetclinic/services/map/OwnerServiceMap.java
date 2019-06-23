@@ -26,7 +26,7 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long>
     }
 
     @Override
-    public Owner save(Owner object) {
+    public Owner save(Owner object) throws RuntimeException {
         return super.save(object);
     }
 
