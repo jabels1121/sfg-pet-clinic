@@ -44,17 +44,69 @@ public class DataLoader implements CommandLineRunner {
         PetType cat = new PetType("Cat");
         PetType savedCatPetType = petTypeService.save(cat);
 
+        PetType parrot = new PetType("Parrot");
+        PetType savedParrotPetType = petTypeService.save(parrot);
+
         Owner owner1 = new Owner();
         owner1.setFirstName("John");
         owner1.setLastName("Week");
+        owner1.setAddress("123 Briton bitch");
+        owner1.setCity("Miami");
+        owner1.setTelephone("12312312323");
 
         Owner owner2 = new Owner();
         owner2.setFirstName("Maria");
         owner2.setLastName("Bronson");
+        owner2.setAddress("432 Small Avenue");
+        owner2.setCity("New York");
+        owner2.setTelephone("090912092");
+
 
         Owner owner3 = new Owner();
         owner3.setFirstName("William");
         owner3.setLastName("Wilson");
+        owner3.setAddress("72 World Street");
+        owner3.setCity("Alamo");
+        owner3.setTelephone("7575757575");
+
+
+        Pet pet1 = new Pet();
+        pet1.setName("Barsik");
+        pet1.setPetType(savedCatPetType);
+        pet1.setOwner(owner1);
+        pet1.setBirthDate(LocalDate.of(2005, 1, 12));
+
+        Pet pet4 = new Pet();
+        pet4.setName("Murzik");
+        pet4.setPetType(savedCatPetType);
+        pet4.setOwner(owner1);
+        pet4.setBirthDate(LocalDate.of(2005, 1, 12));
+
+        Pet pet2 = new Pet();
+        pet2.setName("Rosco");
+        pet2.setPetType(savedDogPetType);
+        pet2.setOwner(owner2);
+        pet2.setBirthDate(LocalDate.of(2014, 6, 27));
+
+        Pet pet3 = new Pet();
+        pet3.setName("Lilly");
+        pet3.setPetType(savedParrotPetType);
+        pet3.setOwner(owner3);
+        pet3.setBirthDate(LocalDate.of(2011, 3, 2));
+
+
+        owner1.getPets().add(pet1);
+        owner1.getPets().add(pet4);
+
+        owner2.getPets().add(pet2);
+        owner3.getPets().add(pet3);
+
+
+        Arrays.asList(owner1, owner2, owner3)
+                .forEach(ownerService::save);
+
+        logger.info("Owners data loaded...");
+
 
         Vet vet1 = new Vet();
         vet1.setFirstName("Daria");
@@ -68,34 +120,11 @@ public class DataLoader implements CommandLineRunner {
         vet3.setFirstName("Oleg");
         vet3.setLastName("Gnatuk");
 
-        Pet pet1 = new Pet();
-        pet1.setPetType(new PetType("cat"));
-        pet1.setOwner(owner1);
-        pet1.setBirthDate(LocalDate.of(2005, 1, 12));
-
-        Pet pet2 = new Pet();
-        pet2.setPetType(new PetType("dog"));
-        pet2.setOwner(owner2);
-        pet2.setBirthDate(LocalDate.of(2014, 6, 27));
-
-        Pet pet3 = new Pet();
-        pet3.setPetType(new PetType("parrot"));
-        pet3.setOwner(owner3);
-        pet3.setBirthDate(LocalDate.of(2011, 3, 2));
-
-
-        Arrays.asList(owner1, owner2, owner3)
-                .forEach(ownerService::save);
-
-        logger.info("Owners data loaded...");
-
         Arrays.asList(vet1, vet2, vet3)
                 .forEach(vetService::save);
 
         logger.info("Vet data loaded...");
 
-        Arrays.asList(pet1, pet2, pet3)
-                .forEach(petService::save);
 
         logger.info("Pet data loaded...");
 
