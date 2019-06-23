@@ -3,12 +3,9 @@ package com.jaybe.sfgpetclinic.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Set;
-
-public class Vet extends Person {
+public class Specialty extends BaseEntity {
 
     @Getter
     @Setter
-    private Set<Specialty> specialties;
-
+    private String description;
 }
