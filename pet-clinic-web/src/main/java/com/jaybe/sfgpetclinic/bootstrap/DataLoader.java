@@ -6,6 +6,7 @@ import com.jaybe.sfgpetclinic.model.PetType;
 import com.jaybe.sfgpetclinic.model.Vet;
 import com.jaybe.sfgpetclinic.services.OwnerService;
 import com.jaybe.sfgpetclinic.services.PetService;
+import com.jaybe.sfgpetclinic.services.PetTypeService;
 import com.jaybe.sfgpetclinic.services.VetService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,27 +16,34 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.concurrent.atomic.AtomicLong;
 
 @Component
 public class DataLoader implements CommandLineRunner {
 
-    private final AtomicLong id = new AtomicLong(0L);
     private final OwnerService ownerService;
     private final PetService petService;
     private final VetService vetService;
+    private final PetTypeService petTypeService;
 
     private Logger logger = LoggerFactory.getLogger(this.getClass().getName());
 
     @Autowired
-    public DataLoader(OwnerService ownerService, PetService petService, VetService vetService) {
+    public DataLoader(OwnerService ownerService, PetService petService, VetService vetService, PetTypeService petTypeService) {
         this.ownerService = ownerService;
         this.petService = petService;
         this.vetService = vetService;
+        this.petTypeService = petTypeService;
     }
 
     @Override
     public void run(String... args) throws Exception {
+        
+        PetType dog = new PetType("Dog");
+        PetType savedDogPetType = petTypeService.save(dog);
+
+        PetType cat = new PetType("Cat");
+        PetType savedCatPetType = petTypeService.save(cat);
+
         Owner owner1 = new Owner();
         owner1.setFirstName("John");
         owner1.setLastName("Week");
