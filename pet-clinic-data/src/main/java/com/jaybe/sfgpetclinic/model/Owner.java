@@ -1,5 +1,7 @@
 package com.jaybe.sfgpetclinic.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -9,12 +11,16 @@ import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Owner extends Person {
 
-    private Set<Pet> pets = new HashSet<>();
+
     private String address;
     private String city;
     private String telephone;
+    private Set<Pet> pets = new HashSet<>();
 
     public Set<Pet> getPets() {
         return pets;
