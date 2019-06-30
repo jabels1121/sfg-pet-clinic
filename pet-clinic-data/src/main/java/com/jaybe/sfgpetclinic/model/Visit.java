@@ -1,17 +1,21 @@
 package com.jaybe.sfgpetclinic.model;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-
 import java.time.LocalDate;
 
-@NoArgsConstructor
-@AllArgsConstructor
 public class Visit extends BaseEntity{
 
     private LocalDate date;
     private String description;
     private Pet pet;
+
+    public Visit() {
+    }
+
+    public Visit(LocalDate date, String description, Pet pet) {
+        this.date = date;
+        this.description = description;
+        this.pet = pet;
+    }
 
     public LocalDate getDate() {
         return date;

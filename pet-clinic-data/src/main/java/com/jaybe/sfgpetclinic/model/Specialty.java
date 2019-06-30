@@ -1,11 +1,21 @@
 package com.jaybe.sfgpetclinic.model;
 
-import lombok.Getter;
-import lombok.Setter;
-
 public class Specialty extends BaseEntity {
 
-    @Getter
-    @Setter
     private String description;
+
+    public Specialty() {
+    }
+
+    public Specialty(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }
