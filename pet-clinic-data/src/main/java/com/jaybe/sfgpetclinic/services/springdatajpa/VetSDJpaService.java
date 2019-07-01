@@ -12,11 +12,11 @@ import java.util.stream.StreamSupport;
 
 @Service
 @Profile("springdatajpa")
-public class VetsSDJpaService implements VetService {
+public class VetSDJpaService implements VetService {
 
     private final VetRepository vetRepository;
 
-    public VetsSDJpaService(VetRepository vetRepository) {
+    public VetSDJpaService(VetRepository vetRepository) {
         this.vetRepository = vetRepository;
     }
 
