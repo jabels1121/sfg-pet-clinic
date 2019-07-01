@@ -28,7 +28,7 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long>
 
     @Override
     public Set<Owner> findAll() {
-        return sortedByIdFindAll(super.findAll());
+        return findAllSortedById(super.findAll());
     }
 
     @Override
@@ -74,7 +74,7 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long>
                 .findFirst().orElse(null)).getValue();
     }
 
-    private Set<Owner> sortedByIdFindAll(Set<Owner> owners) {
+    private Set<Owner> findAllSortedById(Set<Owner> owners) {
         return owners.stream()
                 .sorted(Comparator.comparing(BaseEntity::getId)).collect(Collectors.toCollection(LinkedHashSet::new));
     }
