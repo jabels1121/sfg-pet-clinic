@@ -33,16 +33,16 @@ public class PetsSDJpaService implements PetService {
 
     @Override
     public Pet save(Pet object) throws RuntimeException {
-        return null;
+        return petRepository.save(object);
     }
 
     @Override
     public void delete(Pet object) {
-
+        petRepository.delete(object);
     }
 
     @Override
     public void deleteById(Long aLong) {
-
+        petRepository.deleteById(aLong);
     }
 }
