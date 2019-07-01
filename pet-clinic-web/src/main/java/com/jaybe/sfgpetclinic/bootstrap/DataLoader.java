@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.HashSet;
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -105,6 +106,7 @@ public class DataLoader implements CommandLineRunner {
 
         Owner owner4 = Owner.builder().firstName("Ilya").lastName("Grishaev")
                 .address("Khalturinskaya 17").city("Moscow")
+                .pets(new HashSet<>())
                 .telephone("+792547748465564").build();
 
         logger.info("====== End of creating Owners.");
@@ -135,6 +137,11 @@ public class DataLoader implements CommandLineRunner {
         pet3.setPetType(savedParrotPetType);
         pet3.setOwner(owner3);
         pet3.setBirthDate(LocalDate.of(2011, 3, 2));
+
+        Pet messy = Pet.builder().owner(owner4).name("Messy")
+                .birthDate(LocalDate.of(2015, 3, 12))
+                .petType(savedDogPetType)
+                .build();
         logger.info("====== End of creating Pets.");
         // End of creating pets
 
@@ -152,12 +159,17 @@ public class DataLoader implements CommandLineRunner {
 
         owner2.getPets().add(pet2);
         owner3.getPets().add(pet3);
+        if (owner4.getPets() != null) {
+            owner4.getPets().add(messy); // todo: Разобраться с builderom lombok(не иницализируется
+        } else {
+            logger.error("owner4 pets set are null! Lombok builder doesn't work properly!");
+        }
         logger.info("====== End of associating pets to owners");
         // End of associating pets to owners
 
         // Start saving owners to cache
         logger.info("--->>> Starting of saving owners into cache");
-        Arrays.asList(owner1, owner2, owner3)
+        Arrays.asList(owner1, owner2, owner3, owner4)
                 .forEach(ownerService::save);
         logger.info("====== Owners data loaded...");
         // End of saving owners to cache
