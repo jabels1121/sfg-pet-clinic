@@ -102,6 +102,11 @@ public class DataLoader implements CommandLineRunner {
         owner3.setAddress("72 World Street");
         owner3.setCity("Alamo");
         owner3.setTelephone("7575757575");
+
+        Owner owner4 = Owner.builder().firstName("Ilya").lastName("Grishaev")
+                .address("Khalturinskaya 17").city("Moscow")
+                .telephone("+792547748465564").build();
+
         logger.info("====== End of creating Owners.");
         // End of Creating Owners
 
