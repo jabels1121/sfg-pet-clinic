@@ -19,16 +19,20 @@ public class DataLoader implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialtyService specialtyService;
+    private final VisitService visitService;
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
 
     @Autowired
-    public DataLoader(OwnerService ownerService, PetService petService, VetService vetService, PetTypeService petTypeService, SpecialtyService specialtiesService) {
+    public DataLoader(OwnerService ownerService, PetService petService,
+                      VetService vetService, PetTypeService petTypeService,
+                      SpecialtyService specialtiesService, VisitService visitService) {
         this.ownerService = ownerService;
         this.petService = petService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialtyService = specialtiesService;
+        this.visitService = visitService;
     }
 
     @Override
@@ -129,6 +133,13 @@ public class DataLoader implements CommandLineRunner {
         logger.info("====== End of creating Pets.");
         // End of creating pets
 
+        // Start of creating Visits
+        Visit catVisit = new Visit();
+        catVisit.setPet(pet1);
+        catVisit.setDate(LocalDate.now());
+        catVisit.setDescription("Sneezy Kitty");
+        // End of creating Visits
+
         // Starting of associating pets to owners
         logger.info("--->>> Starting of associating pets to owners");
         owner1.getPets().add(pet1);
@@ -172,6 +183,10 @@ public class DataLoader implements CommandLineRunner {
                 .forEach(vetService::save);
         logger.info("Vet data loaded...");
         // End of saving vets to cache
+
+        // Start saving visits to cache
+        visitService.save(catVisit);
+        // End of saving visits to cache
 
         logger.info("--->>>>--->>> END BOOTSTRAP DATA!");
     }
