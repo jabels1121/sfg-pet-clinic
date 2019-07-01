@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 import java.util.LinkedHashSet;
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -71,9 +70,9 @@ public class OwnerMapService extends AbstractMapService<Owner, Long>
 
     @Override
     public Owner findByLastName(String lastName) {
-        return Objects.requireNonNull(super.map.entrySet()
-                .stream().filter(e -> e.getValue().getLastName().equalsIgnoreCase(lastName))
-                .findFirst().orElse(null)).getValue();
+        return this.findAll().stream()
+                .filter(owner -> owner.getLastName().equalsIgnoreCase(lastName))
+                .findFirst().orElse(null);
     }
 
     private Set<Owner> findAllSortedById(Set<Owner> owners) {
