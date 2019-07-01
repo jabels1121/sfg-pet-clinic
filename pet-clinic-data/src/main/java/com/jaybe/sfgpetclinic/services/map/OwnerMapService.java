@@ -6,6 +6,7 @@ import com.jaybe.sfgpetclinic.model.Pet;
 import com.jaybe.sfgpetclinic.services.OwnerService;
 import com.jaybe.sfgpetclinic.services.PetService;
 import com.jaybe.sfgpetclinic.services.PetTypeService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -15,6 +16,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
+@Profile({"default", "map"})
 public class OwnerMapService extends AbstractMapService<Owner, Long>
         implements OwnerService {
 
