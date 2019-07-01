@@ -92,9 +92,9 @@ class OwnerMapServiceTest {
         Owner build = Owner.builder().id(2L).build();
         Owner build1 = Owner.builder().id(4L).build();
         Owner build2 = Owner.builder().id(3L).build();
-        Owner save = ownerMapService.save(build);
-        Owner save1 = ownerMapService.save(build1);
-        Owner save2 = ownerMapService.save(build2);
+        ownerMapService.save(build);
+        ownerMapService.save(build1);
+        ownerMapService.save(build2);
 
         List<Owner> ownerList = Arrays.asList(Owner.builder().id(ownerId).build(),
                 build, build1, build2);
@@ -102,7 +102,6 @@ class OwnerMapServiceTest {
         List<Long> collect = ownerList.stream().map(Owner::getId).collect(Collectors.toList());
 
         List<Long> all = ownerMapService.findAll().stream().map(Owner::getId).collect(Collectors.toList());
-        // todo: assert that set of owners was sorted by Id property
         assertEquals(all, collect);
     }
 }
