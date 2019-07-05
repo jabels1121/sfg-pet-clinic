@@ -55,7 +55,7 @@ class OwnerSDJpaServiceTest {
         verify(ownerRepository, times(1)).findByLastName(any());
     }
 
-    // todo: implemented below tests
+
     @Test
     void findAll() {
         Iterable<Owner> ownerIterable = Arrays.asList(returnOwner, Owner.builder().build());
